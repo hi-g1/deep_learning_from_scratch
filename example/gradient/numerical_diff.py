@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 def function_1(x):
     return 0.01*x**2 + 0.1*x
@@ -11,24 +12,27 @@ def numerical_diff(f,x):
     h=1e-4
     return (f(x+h)-f(x-h))/(2*h)
 
-def numerical_gradient(f,x):
-    h=1e-4
-    grad=np.zeros_like(x) # x형태처러 배열 생성
-    #print(f"{grad=} {x.size=}")
+def numerical_gradient(f, x):
+    h = 1e-4
+    grad = np.zeros_like(x)  # x 형태처럼 배열 생성
 
     it = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
-    while not it.finished:
-        idx = it.multi_index
-        tmp_val = x[idx]
-        x[idx] = tmp_val + h
-        fxh1 = f(x)  # f(x+h)
+    total_steps = x.size
 
-        x[idx] = tmp_val - h
-        fxh2 = f(x)  # f(x-h)
+    with tqdm(total=total_steps, desc="Calculating gradient", unit="step") as pbar:
+        while not it.finished:
+            idx = it.multi_index
+            tmp_val = x[idx]
+            x[idx] = tmp_val + h
+            fxh1 = f(x)  # f(x+h)
 
-        grad[idx] = (fxh1 - fxh2) / (2 * h)  # 중심차분
-        x[idx] = tmp_val  # 값 복원
-        it.iternext()
+            x[idx] = tmp_val - h
+            fxh2 = f(x)  # f(x-h)
+
+            grad[idx] = (fxh1 - fxh2) / (2 * h)  # 중심차분
+            x[idx] = tmp_val  # 값 복원
+            it.iternext()
+            pbar.update(1)
 
     return grad
 
