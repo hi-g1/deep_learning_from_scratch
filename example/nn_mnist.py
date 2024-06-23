@@ -2,8 +2,8 @@ import numpy as np
 from dataset.mnist import load_mnist
 import pickle
 from typing import Dict
-from sigmoid_function import sigmoid_function
-from softmax_function import softmax_function
+from functions.sigmoid_function import sigmoid_function
+from functions.softmax_function import softmax_function
 
 def get_data() -> None:
     (x_train, t_train), (x_test, t_test) = \
