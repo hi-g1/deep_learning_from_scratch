@@ -14,17 +14,21 @@ def numerical_diff(f,x):
 def numerical_gradient(f,x):
     h=1e-4
     grad=np.zeros_like(x) # x형태처러 배열 생성
+    #print(f"{grad=} {x.size=}")
 
-    for idx in range(x.size):
-        tmp_val=x[idx]
-        x[idx]=tmp_val+h
-        fxh1=f(x[idx]) # f(x+h)
+    it = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
+    while not it.finished:
+        idx = it.multi_index
+        tmp_val = x[idx]
+        x[idx] = tmp_val + h
+        fxh1 = f(x)  # f(x+h)
 
-        x[idx]=tmp_val-h
-        fxh2=f(x[idx]) # f(x-h)
+        x[idx] = tmp_val - h
+        fxh2 = f(x)  # f(x-h)
 
-        grad[idx]=(fxh1-fxh2)/(2*h) # 중심차분
-        x[idx]=tmp_val
+        grad[idx] = (fxh1 - fxh2) / (2 * h)  # 중심차분
+        x[idx] = tmp_val  # 값 복원
+        it.iternext()
 
     return grad
 
