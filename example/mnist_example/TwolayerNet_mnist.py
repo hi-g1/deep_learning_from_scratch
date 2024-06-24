@@ -1,6 +1,6 @@
 import numpy as np
 import os,sys
-sys.path.append(os.pardir)
+sys.path.append(os.path.join(os.path.abspath(__file__),'..','..'))
 from dataset.mnist import load_mnist
 from model.TwoLayerNet import TwoLayerNet
 import yaml

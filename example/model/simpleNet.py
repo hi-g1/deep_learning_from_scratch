@@ -1,5 +1,7 @@
 import numpy as np
-import setup_path
+import sys,os
+sys.path.append(os.path.join(os.path.abspath(__file__), '..', '..'))
+sys.path.append(os.path.join(os.path.abspath(__file__), '..', '..','gradient'))
 from functions.softmax_function import softmax_function
 from functions.cross_entropy_error import CEE
 from gradient.gradient_descent import gradient_descent

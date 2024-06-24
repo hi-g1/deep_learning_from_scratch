@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import os,sys
+sys.path.append(os.path.join(os.path.abspath(__file__), '..', '..'))
 from tqdm import tqdm
 
 def function_1(x):

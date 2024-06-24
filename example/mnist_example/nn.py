@@ -1,6 +1,8 @@
 import numpy as np
-from sigmoid_function import sigmoid_function
-from identity_function import identity_function
+import sys,os
+sys.path.append(os.path.join(os.path.abspath(__file__),'..','..'))
+from functions.sigmoid_function import sigmoid_function
+from functions.identity_function import identity_function
 from typing import Dict
 
 
