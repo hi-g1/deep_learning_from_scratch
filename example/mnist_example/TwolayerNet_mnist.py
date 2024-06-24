@@ -2,10 +2,10 @@ import numpy as np
 import os,sys
 sys.path.append(os.pardir)
 from dataset.mnist import load_mnist
-from TwoLayerNet import TwoLayerNet
+from model.TwoLayerNet import TwoLayerNet
 import yaml
 
-with open('example\config.yaml', 'r') as f:
+with open('example\mnist_example\config.yaml', 'r') as f:
     config=yaml.safe_load(f)
 
 (x_train, t_train), (x_test, t_test) = \
