@@ -2,3 +2,7 @@
 *.gz
 
 *.pkl
+
+*.pyc
+
+example/temp/

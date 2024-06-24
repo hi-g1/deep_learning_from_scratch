@@ -1,5 +1,5 @@
 import sys,os
-# sys.path.append(os.pardir)
+sys.path.append(os.path.join(os.path.abspath(__file__),'..','..'))
 from dataset.mnist import load_mnist
 from PIL import Image
 import numpy as np

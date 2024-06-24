@@ -1,9 +1,11 @@
 import numpy as np
+import os,sys
+sys.path.append(os.path.join(os.path.abspath(__file__),'..','..'))
 from dataset.mnist import load_mnist
 import pickle
 from typing import Dict
-from sigmoid_function import sigmoid_function
-from softmax_function import softmax_function
+from functions.sigmoid_function import sigmoid_function
+from functions.softmax_function import softmax_function
 
 def get_data() -> None:
     (x_train, t_train), (x_test, t_test) = \
@@ -12,7 +14,7 @@ def get_data() -> None:
     return x_test, t_test
     
 def init_network():
-    with open("example\sample_weight.pkl", 'rb') as f:
+    with open("example\mnist_example\sample_weight.pkl", 'rb') as f:
         network=pickle.load(f)
 
     return network
